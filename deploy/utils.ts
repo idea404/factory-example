@@ -22,10 +22,20 @@ export function varsAddDeployedContract(
     config[network] = { deployed: [] };
   }
 
-  config[network].deployed.push({
-    name: contractName,
-    address: factoryAddress,
-  });
+  const existingContractIndex = config[network].deployed.findIndex(
+    (contract) => contract.name === contractName
+  );
+
+  if (existingContractIndex !== -1) {
+    // If contract with the same name exists, update its address
+    config[network].deployed[existingContractIndex].address = factoryAddress;
+  } else {
+    // If contract doesn't exist, push the new contract
+    config[network].deployed.push({
+      name: contractName,
+      address: factoryAddress,
+    });
+  }
 
   fs.writeFileSync(JSON_FILE_PATH, JSON.stringify(config, null, 2));
 }
