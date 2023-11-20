@@ -1,19 +1,20 @@
 import { utils, Wallet, Provider, EIP712Signer, types } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { zkSyncNetwork, Wallets } from "./config";
+import { Wallets } from "./config";
 import { varsAddDeployedContract, varsGetDeployedContractAddress } from "./utils";
 
 
-const NETWORK = process.env.NODE_ENV || "local";
+const NETWORK = process.env.NETWORK || "";
 const FACTORY_CONTRACT_NAME = "AAFactory";
 const AA_FACTORY_ADDRESS = varsGetDeployedContractAddress(NETWORK, FACTORY_CONTRACT_NAME);
 const AA_CONTRACT_NAME = "TwoUserMultiSig";
+const WALLET_KEY = process.env.WALLET_KEY || Wallets.richWallet1.privateKey;
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider(zkSyncNetwork.url);
+  const provider = new Provider(hre.network.config.url);
   // Private key of the account used to deploy
-  const wallet = new Wallet(Wallets.richWallet1.privateKey).connect(provider);
+  const wallet = new Wallet(WALLET_KEY).connect(provider);
   const factoryArtifact = await hre.artifacts.readArtifact(FACTORY_CONTRACT_NAME);
 
   const aaFactory = new ethers.Contract(

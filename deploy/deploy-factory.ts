@@ -6,11 +6,12 @@ import { varsAddDeployedContract } from "./utils";
 
 const CONTRACT_NAME = "AAFactory";
 const MULTISIG_CONTRACT_NAME = "TwoUserMultiSig";
-const NETWORK = process.env.NODE_ENV || "local";
+const NETWORK = process.env.NETWORK || "";
+const WALLET_KEY = process.env.WALLET_KEY || Wallets.richWallet1.privateKey;
 
 export default async function (hre: HardhatRuntimeEnvironment) {
   // Private key of the account used to deploy
-  const wallet = new Wallet(Wallets.richWallet1.privateKey);
+  const wallet = new Wallet(WALLET_KEY);
   const deployer = new Deployer(hre, wallet);
   const factoryArtifact = await deployer.loadArtifact(CONTRACT_NAME);
   const aaArtifact = await deployer.loadArtifact(MULTISIG_CONTRACT_NAME);

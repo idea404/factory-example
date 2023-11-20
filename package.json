@@ -11,9 +11,9 @@
       "node:start": "echo y | npx zksync-cli dev start",
       "node:end": "npx zksync-cli dev stop",
       "run:deploy:compiled": "yarn deploy:compiled:factory && yarn deploy:compiled:multisig",
-      "run:deploy:declared": "yarn deploy:declared:factory && yarn deploy:declared:multisig",
         "deploy:compiled:factory": "yarn hardhat deploy-zksync --script deploy-factory.ts",
         "deploy:compiled:multisig": "yarn hardhat deploy-zksync --script deploy-multisig.ts",
+      "run:deploy:declared": "yarn deploy:declared:factory && yarn deploy:declared:multisig",
         "deploy:declared:factory": "yarn hardhat deploy-zksync --script deploy-factory-dynamic.ts",
         "deploy:declared:multisig": "yarn hardhat deploy-zksync --script deploy-multisig-dynamic.ts"
   },

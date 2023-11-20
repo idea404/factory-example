@@ -1,6 +1,6 @@
-import { zkSyncNetwork } from "../hardhat.config";
+import { config } from "../hardhat.config";
 
-export { zkSyncNetwork };
+export { config };
 
 export const Wallets = {
   richWallet1: {

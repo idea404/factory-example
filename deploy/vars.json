@@ -1,1 +1,22 @@
-{}
+{
+  "zkSyncTesnet": {
+    "deployed": [
+      {
+        "name": "AAFactory",
+        "address": "0xbD4890A501164004136Ad8ff52650dec75bf8C32"
+      }
+    ]
+  },
+  "": {
+    "deployed": [
+      {
+        "name": "AAFactory",
+        "address": "0xDE7926Ad640005C33843B5EC178DC757e7079957"
+      },
+      {
+        "name": "TwoUserMultiSig",
+        "address": "0x613E05Cbe1b2a0FF29776dF08D4fB76CB0Ed78A0"
+      }
+    ]
+  }
+}
